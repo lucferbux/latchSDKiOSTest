@@ -1,0 +1,18 @@
+PODS:
+  - Alamofire (4.5.0)
+  - Arcane (0.5.0)
+  - RAMPaperSwitch (2.0.5)
+
+DEPENDENCIES:
+  - Alamofire
+  - Arcane
+  - RAMPaperSwitch (~> 2.0.3)
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Arcane: 61f912466a57490ab852d733eaea3b32d66a241f
+  RAMPaperSwitch: 8e547186be122e858aa060596708f0dcbfe7593f
+
+PODFILE CHECKSUM: 629bb61d6830e641470d71af2e2934cb54175a94
+
+COCOAPODS: 1.3.1
