@@ -14,20 +14,33 @@ class LatchInterface {
     private var _latchAuth: LatchAuth
     // Latch Connection Api
     
+    /// Interface in latch to use it in Swift
+    ///
+    /// - Parameters:
+    ///   - accountId: String given after pairing the app with the service
+    ///   - appId: The App Id of the application
+    ///   - appSecret: The Secret of the applications
     init(accountId: String, appId: String, appSecret: String) {
         self._accountId = accountId
         self._latchAuth = LatchAuth(appId: appId, appSecret: appSecret)
     }
     
-    func pairLatch(token: String) {
+    func pairLatch(token: String, completion: @escaping (String) -> Void) {
         let url = _latchAuth.API_PAIR_URL + "/" + token
         _latchAuth.http(method: "GET", url: url) { (response) in
             guard let data = response["data"] as? [String:Any],
                 let accountId = data["accountId"] else {
                     print("Response malformed")
+                    completion("error")
                     return
             }
             print(accountId)
+            if let accountIdReturn = accountId as? String{
+                completion(accountIdReturn)
+            } else {
+               completion("error")
+            }
+            
         }
     }
     

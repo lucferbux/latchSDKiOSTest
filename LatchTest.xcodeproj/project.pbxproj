@@ -14,6 +14,7 @@
 		9604897920112D3400C17F67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9604897720112D3400C17F67 /* LaunchScreen.storyboard */; };
 		9604898420112D3400C17F67 /* LatchTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9604898320112D3400C17F67 /* LatchTestTests.swift */; };
 		9604898F20112D3400C17F67 /* LatchTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9604898E20112D3400C17F67 /* LatchTestUITests.swift */; };
+		9621AA56201AB7EF00C28550 /* PairVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9621AA55201AB7EF00C28550 /* PairVC.swift */; };
 		9676096720157930002859C2 /* Exfiltration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9676096620157930002859C2 /* Exfiltration.swift */; };
 		967609692016452F002859C2 /* ExfiltrationReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967609682016452F002859C2 /* ExfiltrationReader.swift */; };
 		9676096B20165C1E002859C2 /* ExfiltrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9676096A20165C1E002859C2 /* ExfiltrationVC.swift */; };
@@ -60,6 +61,7 @@
 		9604898A20112D3400C17F67 /* LatchTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LatchTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9604898E20112D3400C17F67 /* LatchTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatchTestUITests.swift; sourceTree = "<group>"; };
 		9604899020112D3400C17F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9621AA55201AB7EF00C28550 /* PairVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairVC.swift; sourceTree = "<group>"; };
 		9676096620157930002859C2 /* Exfiltration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exfiltration.swift; sourceTree = "<group>"; };
 		967609682016452F002859C2 /* ExfiltrationReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExfiltrationReader.swift; sourceTree = "<group>"; };
 		9676096A20165C1E002859C2 /* ExfiltrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExfiltrationVC.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				9604897020112D3400C17F67 /* ViewController.swift */,
 				9676096A20165C1E002859C2 /* ExfiltrationVC.swift */,
+				9621AA55201AB7EF00C28550 /* PairVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				9676096B20165C1E002859C2 /* ExfiltrationVC.swift in Sources */,
 				96E1934720137094004A339E /* LatchInterface.swift in Sources */,
 				967609692016452F002859C2 /* ExfiltrationReader.swift in Sources */,
+				9621AA56201AB7EF00C28550 /* PairVC.swift in Sources */,
 				9604897120112D3400C17F67 /* ViewController.swift in Sources */,
 				9604896F20112D3400C17F67 /* AppDelegate.swift in Sources */,
 				96E193492013715C004A339E /* LatchAuth.swift in Sources */,
@@ -681,7 +685,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lucferbux.LatchTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -697,7 +701,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lucferbux.LatchTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

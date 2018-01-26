@@ -14,15 +14,19 @@ class LatchExfiltrationReader: LatchExfiltration {
         super.init(accountId: accountId, appId: appId, appSecret: appSecret)
     }
         
+    /// Get the exfiltrated byte of latch an convert it into its ascii representation
+    ///
+    /// - Parameters:
+    ///   - operation: Name of the operation
+    ///   - ascii: String with the message to append
+    ///   - dictConveted: Dictionary with the operations
+    ///   - completion: Closure to return the character and bit representation
     func readExfiltratedByte(operation: Int, ascii:String, dictConveted: [String:String], completion: @escaping ((String, String)) -> Void){
-        print(operation)
         let latchOperation = dictConveted[String(operation)]
         self.latch.checkStatus(operationId: latchOperation!, completion: { (response) in
             let asciiNew = ascii + (response == "on" ? "0" : "1")
             if asciiNew.count == 8 {
-                print(asciiNew)
                 let byteConverted = self.byteToString(byte: asciiNew)
-                print(byteConverted)
                 //self.latch.unlock(operationId: dictConveted["control"]!)
                 completion((asciiNew, byteConverted))
             } else {
