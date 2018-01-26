@@ -13,23 +13,57 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var switchLatch: UISwitch!
     @IBOutlet weak var switchLabel: UILabel!
+    @IBOutlet weak var realoadButton: UIButton!
     
-    
+    let APP_ID: String = ""
+    let APP_SECRET: String = ""
+    var accountId: String!
     var latchInt: LatchInterface!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let APP_ID = ""
-        let APP_SECRET = ""
-        let ACCOUNT_ID = ""
-        latchInt = LatchInterface(accountId: ACCOUNT_ID, appId: APP_ID, appSecret: APP_SECRET)
-        checkStatusLatch()
-
+        self.accountId = UserDefaults.standard.string(forKey: "app_id")
+        if(self.accountId != nil){
+            latchInt = LatchInterface(accountId: self.accountId, appId: APP_ID, appSecret: APP_SECRET)
+            changeInterfaceStatus(enabled: true)
+            checkStatusLatch()
+        } else {
+            changeInterfaceStatus(enabled: false)
+        }
     }
     
+
+    
     override func viewWillAppear(_ animated: Bool) {
-        checkStatusLatch()
+        self.accountId = UserDefaults.standard.string(forKey: "app_id")
+        if(self.accountId != nil){
+            if(latchInt == nil){
+                latchInt = LatchInterface(accountId: self.accountId, appId: self.APP_ID, appSecret: self.APP_SECRET)
+            }
+            changeInterfaceStatus(enabled: true)
+            checkStatusLatch()
+        } else {
+            changeInterfaceStatus(enabled: false)
+        }
     }
+    
+    
+    
+    func changeInterfaceStatus(enabled: Bool){
+        DispatchQueue.main.async {
+            if let arrayOfTabBarItems = self.tabBarController?.tabBar.items as! AnyObject as? NSArray,let tabBarItem = arrayOfTabBarItems[1] as? UITabBarItem {
+                tabBarItem.isEnabled = enabled
+            }
+            self.switchLabel.text = enabled ? self.switchLabel.text : "No"
+            self.switchLabel.textColor = enabled ? self.switchLabel.textColor : UIColor.gray
+            self.switchLatch.setOn(enabled ? self.switchLatch.isOn : enabled, animated: true)
+            self.realoadButton.isEnabled = enabled
+            self.switchLatch.isEnabled = enabled
+        }
+    }
+    
+    
+    
     
     @IBAction func checkStatusButton(_ sender: Any) {
         checkStatusLatch()

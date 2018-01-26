@@ -27,26 +27,29 @@ class ExfiltrationVC: UIViewController {
     
     var latchReader: LatchExfiltrationReader!
     var message = ""
-    
+    let APP_ID: String = ""
+    let APP_SECRET: String = ""
+    var accountId: String!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let APP_ID = ""
-        let APP_SECRET = ""
-        let ACCOUNT_ID = ""
-        
-        latchReader = LatchExfiltrationReader(accountId: ACCOUNT_ID, appId: APP_ID, appSecret: APP_SECRET)
+        self.accountId = UserDefaults.standard.string(forKey: "app_id")
+        if (self.accountId != nil ){
+            latchReader = LatchExfiltrationReader(accountId: self.accountId, appId: APP_ID, appSecret: APP_SECRET)
+            
+        }
         message = ""
         self.buttonRead.setTitle("Read", for: .normal)
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        self.accountId = UserDefaults.standard.string(forKey: "app_id")
+        if(self.accountId != nil && latchReader == nil){
+            latchReader = LatchExfiltrationReader(accountId: self.accountId, appId: APP_ID, appSecret: APP_SECRET)
+        }
     }
-    
     
     @IBAction func readMessage(_ sender: Any) {
         DispatchQueue.main.async {
