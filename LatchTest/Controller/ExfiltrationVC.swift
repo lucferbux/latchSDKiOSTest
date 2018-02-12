@@ -54,6 +54,7 @@ class ExfiltrationVC: UIViewController {
     @IBAction func readMessage(_ sender: Any) {
         DispatchQueue.main.async {
             self.buttonRead.setTitle("Reading...", for: .normal)
+            self.buttonRead.isEnabled = false
         }
         latchReader.startExfiltration { (response) in
             self.messageLbl.text = ""
@@ -63,6 +64,9 @@ class ExfiltrationVC: UIViewController {
 
     }
     
+    /// Read message from latch app
+    ///
+    /// - Parameter operations: Array with all the operations
     func readMessageLatch(operations: [String:String]) {
         self.latchReader.latch.checkStatus(operationId: operations["end"]!, completion: { (responseEnd) in
             if(responseEnd == "on"){
@@ -81,12 +85,14 @@ class ExfiltrationVC: UIViewController {
                         })
                     } else {
                         self.latchReader.latch.lock(operationId: operations["reader"]!)
-                        let timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.callReadMessage), userInfo: operations, repeats: false)
+                        let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.callReadMessage), userInfo: operations, repeats: false)
                     }
                 })
             } else {
                 DispatchQueue.main.async {
                     self.buttonRead.setTitle("Read", for: .normal)
+                    self.buttonRead.isEnabled = true
+                    self.messageLbl.text = self.messageLbl.text! + "  ---- Finished"
                 }
             }
         })
